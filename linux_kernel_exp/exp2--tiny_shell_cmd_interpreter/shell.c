@@ -2,7 +2,6 @@
 * filename ：shell.c
 * author : XuChongyang
 */
-
 #include<stdio.h>
 #include<stdlib.h>
 #include<ctype.h>
@@ -221,14 +220,14 @@ expr_start:
                         goto expr_start;
             }
             if(cur->next && cur->next->t == R_RE){
-	    		if(!cur->next->next){
+	    		if(!cur->next->next || cur->next->next->t == NONE){
 		    		printf("syntax error\n");
 			    	goto end;
-			    }
+			 }
 			    pid_t pid = fork();
 			    if(pid == 0){
                        		fd_out = open(cur->next->next->name, O_CREAT | O_WRONLY | O_TRUNC, S_IRUSR | S_IRGRP | S_IROTH);
-				            dup2(fd_out,1);
+				          dup2(fd_out,1);
 				          int res =  execvp(cur->name,cur->argv);
 					  if(res < 0){
 					  	printf("can't exec [%s]\n",cur->name);
@@ -242,14 +241,14 @@ expr_start:
 					cur = cur->next->next->next;
 				    }
 				    
-				    cur = cur->next->next->next;
+			
 				    goto expr_start;
 			    }else{
 				    printf("fork error\n");
 				    goto end;
 			    }	
             }else if(cur->next && cur->next->t == L_RE){
-                if(!cur->next->next){
+                if(!cur->next->next || cur->next->next->t == NONE){
                                 printf("syntax error\n");
                                 goto end;
                 }
@@ -341,7 +340,7 @@ expr_start:
                	 }       
                	 goto expr_start;
         }else if(cur->next && cur->next->t == PIPE){
-			if(!cur->next->next){
+			if(!cur->next->next || cur->next->next->t == NONE){
                                 printf("syntax error\n");
                                 goto end;
                         }
@@ -452,4 +451,3 @@ int main(){
 //		printf("pid: %d\n",getpid());
 	}
 }
-
