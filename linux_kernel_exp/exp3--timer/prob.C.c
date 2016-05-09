@@ -160,3 +160,33 @@ long unsigned int fibonacci(unsigned int n){
 	if(n==2) return 1;
 	return -1;
 }
+
+static void psig_real(void){
+	p_real_secs += 10;
+}
+static void psig_virtual(void){
+	p_virtual_secs += 10;
+}
+static void psig_prof(void){
+	p_prof_secs += 10;
+}
+
+static void c1sig_real(void){
+	c1_real_secs+=10;
+}
+static void c1ig_virtual(void){
+	c1_virtual_secs+=10;
+}
+static void c1ig_prof(void){
+	c1_prof_secs+=10;
+}
+
+static void c2sig_real(void){
+	c2_real_secs += 10;
+}
+static void c2sig_virtual(void){
+	c2_virtual_secs += 10;
+}
+static void c2sig_prof(void){
+	c2_prof_secs += 10;
+}
