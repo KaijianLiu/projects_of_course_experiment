@@ -135,8 +135,6 @@ int main(int argc, char**argv){
 			printf("Child2 fib = %d \n Child2 ProfTime=%ld sec : %ld msec\n",fib,c2_prof_secs + 9 -c2_proft.it_value.tv_sec,999999-c2_proft.it_value.tv_usec/1000);
 			
 			
-		}
-			
 		}else{
 			fib = fibonacci(atoi(argv[3));
 			// 打印子进程 1所花费的 3种时间值
